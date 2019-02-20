@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		43FEC503221DCE4D00B13C0E /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43FEC502221DCE4D00B13C0E /* main.swift */; };
+		43FEC50A221DCEDA00B13C0E /* Bagels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43FEC509221DCEDA00B13C0E /* Bagels.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -25,6 +26,7 @@
 /* Begin PBXFileReference section */
 		43FEC4FF221DCE4D00B13C0E /* lab1_PatLooft */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = lab1_PatLooft; sourceTree = BUILT_PRODUCTS_DIR; };
 		43FEC502221DCE4D00B13C0E /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
+		43FEC509221DCEDA00B13C0E /* Bagels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bagels.swift; sourceTree = "<group>"; usesTabs = 1; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +60,7 @@
 			isa = PBXGroup;
 			children = (
 				43FEC502221DCE4D00B13C0E /* main.swift */,
+				43FEC509221DCEDA00B13C0E /* Bagels.swift */,
 			);
 			path = lab1_PatLooft;
 			sourceTree = "<group>";
@@ -120,6 +123,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				43FEC503221DCE4D00B13C0E /* main.swift in Sources */,
+				43FEC50A221DCEDA00B13C0E /* Bagels.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -244,6 +248,7 @@
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = B98ANWL92B;
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 			};
@@ -254,6 +259,7 @@
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = B98ANWL92B;
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 			};
