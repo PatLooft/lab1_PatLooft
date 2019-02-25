@@ -29,7 +29,7 @@ public class Bagels {
 	var ones: Int?;
 	var tens: Int?;
 	var hundos: Int?;
-	var geusses = 0;
+	
 	
 	var correct: Bool;
 	// DO NOT MODIFY THE METHOD DECLARATIONS IN ANY WAY
@@ -49,6 +49,8 @@ public class Bagels {
 		// read user input
 		var input: Int;
 		var playAgain: Bool;
+		var validGeusses: Int;
+		validGeusses = 0;
 		playAgain = true;
 		input = -1;
 		
@@ -58,11 +60,18 @@ public class Bagels {
 				print("Input = \(input) \tnumber = \(number!)")
 				correct = isGuessCorrect(guess: String(input));
 				printHint(guess: String(input));
+				validGeusses = validGeusses + 1;
 			}
+			
+			print("You completed the game in \(validGeusses) valid geusses");
 			print("Would you like to play again? If so enter \"yes\"");
+			validGeusses = 0;
 			let inp = readLine();
 			if(inp == "yes"){
 				playAgain = true;
+			}
+			else{
+				playAgain = false;
 			}
 			correct = false;
 		}
@@ -95,6 +104,12 @@ public class Bagels {
 	
 	private func printHint(guess: String){
 		let g = Int(guess);
+		
+		if(g == self.number){
+			print("CORRECT! You geussed the correct number of: \(self.number!)");
+			return;
+		}
+		
 		let ghundos = g!/100;
 		let gtens = (g!/10)%10;
 		let gones = g!%10;
