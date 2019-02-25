@@ -52,7 +52,7 @@ public class Bagels {
 		playAgain = true;
 		input = -1;
 		
-		while !playAgain{
+		while playAgain{//was set to !playAgain
 			while !correct{
 				input = recInput();
 				print("Input = \(input) \tnumber = \(number!)")
