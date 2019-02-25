@@ -129,27 +129,22 @@ public class Bagels {
 		print("\(str)")
 	}
 	
+	//function receives the user input and checks to make sure it is an int between 0 - 999
 	func recInput() -> Int{
-		//var i;
+		var i = 0;
+		var input: String?;
 		repeat{
 			print("Please enter a 3 digit number.")
-			//i = Int(readLine());/*read input*/
-			if let i = readLine(){
-				if let j = Int(i){
-					print("i = \(i)");
+			if let input = readLine(){
+				if(input.isEmpty){
+					continue;
+				}
+				else if Int(input) != nil{
+					i = Int(input)!;
 				}
 			}
-			/*if i as? Int != nil{
-			print("i = \(i)");
-			}
-			else{
-			print("Please enter a valid number between 0 - 999");
-			}*/
-		}while(i > 999 || i < 0);
-		
-		
-		/*print("Please enter a 3 digit number.")
-		let i = Int(readLine()!)!;/*read input*/*/
+		}while(i > 999 || i <= 0);
+
 		return i;
 	}
 	
