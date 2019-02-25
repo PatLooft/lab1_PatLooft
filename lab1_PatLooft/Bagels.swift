@@ -65,7 +65,7 @@ public class Bagels {
 		while again{
 			while !correct{
 				input = recInput();
-				print("Input = \(input) \tnumber = \(number!)")
+				print("Input = \(input)");
 				correct = isGuessCorrect(guess: String(input));
 				printHint(guess: String(input));
 				validGeusses = validGeusses + 1;
