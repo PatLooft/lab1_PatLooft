@@ -25,34 +25,34 @@
 import Foundation
 
 public class Bagels {
-    var number: Int?;
-    var ones: Int?;
-    var tens: Int?;
-    var hundos: Int?;
-    
-
-    var correct: Bool;
-    // DO NOT MODIFY THE METHOD DECLARATIONS IN ANY WAY
-    init(){
-        self.correct = false;
-//        self.ones = 1;
-//        self.tens = 10;
-//        self.hundos = 100;
-        self.generateSecretNumber();
+	var number: Int?;
+	var ones: Int?;
+	var tens: Int?;
+	var hundos: Int?;
+	var geusses = 0;
+	
+	var correct: Bool;
+	// DO NOT MODIFY THE METHOD DECLARATIONS IN ANY WAY
+	init(){
+		self.correct = false;
+		//        self.ones = 1;
+		//        self.tens = 10;
+		//        self.hundos = 100;
+		self.generateSecretNumber();
 		self.hundos = number!/100;
 		self.tens = (number!/10)%10;
 		self.ones = number!%10;
-    }
-    
-    // the ONLY public method
-    public func playGame(){
-        // read user input
+	}
+	
+	// the ONLY public method
+	public func playGame(){
+		// read user input
 		var input: Int;
 		var playAgain: Bool;
 		playAgain = true;
 		input = -1;
 		
-		while playAgain{//was set to !playAgain
+		while playAgain{//was !playAgain
 			while !correct{
 				input = recInput();
 				print("Input = \(input) \tnumber = \(number!)")
@@ -62,29 +62,38 @@ public class Bagels {
 			print("Would you like to play again? If so enter \"yes\"");
 			let inp = readLine();
 			if(inp == "yes"){
-				playAgain = false;
+				playAgain = true;
 			}
 			correct = false;
 		}
-    }
-    
-    private func generateSecretNumber(){
-        // random number generation
-        self.number = Int(arc4random_uniform(1000));
-        //return rand;
-    }
-    
-    private func isGuessCorrect(guess: String) -> Bool{
+	}
+	
+	private func generateSecretNumber(){
+		// random number generation
+		var rhundos = 0;
+		var rtens = 0;
+		var rones = 0;
+		repeat{
+			self.number = 100 + Int(arc4random_uniform(899));
+			rhundos = self.number!/100;
+			rtens = (self.number!/10)%10;
+			rones = self.number!%10;
+			
+			print("number  = \(self.number!)\t \(rhundos)\t\(rtens)\t\(rones)");
+		}while( rhundos == rtens || rhundos == rones || rones == rtens);
+	}
+	
+	private func isGuessCorrect(guess: String) -> Bool{
 		let g = Int(guess);
 		if (self.number! == g){
-            return true;
+			return true;
 		}
 		else{
 			return false;
 		}
-    }
-    
-    private func printHint(guess: String){
+	}
+	
+	private func printHint(guess: String){
 		let g = Int(guess);
 		let ghundos = g!/100;
 		let gtens = (g!/10)%10;
@@ -118,13 +127,31 @@ public class Bagels {
 			print("bagels");
 		}
 		print("\(str)")
-    }
-    
-    func recInput() -> Int{
-        print("Please enter a 3 digit number.")
-        let i = Int(readLine()!)!;/*read input*/
+	}
+	
+	func recInput() -> Int{
+		//var i;
+		repeat{
+			print("Please enter a 3 digit number.")
+			//i = Int(readLine());/*read input*/
+			if let i = readLine(){
+				if let j = Int(i){
+					print("i = \(i)");
+				}
+			}
+			/*if i as? Int != nil{
+			print("i = \(i)");
+			}
+			else{
+			print("Please enter a valid number between 0 - 999");
+			}*/
+		}while(i > 999 || i < 0);
+		
+		
+		/*print("Please enter a 3 digit number.")
+		let i = Int(readLine()!)!;/*read input*/*/
 		return i;
-    }
-    
+	}
+	
 }
 
