@@ -30,14 +30,19 @@ public class Bagels {
 	var tens: Int?;
 	var hundos: Int?;
 	
-	
 	var correct: Bool;
 	// DO NOT MODIFY THE METHOD DECLARATIONS IN ANY WAY
 	init(){
 		self.correct = false;
-		//        self.ones = 1;
-		//        self.tens = 10;
-		//        self.hundos = 100;
+		self.generateSecretNumber();
+		self.hundos = number!/100;
+		self.tens = (number!/10)%10;
+		self.ones = number!%10;
+	}
+	
+	//function to reinitialize bagels object members for a new game
+	private func reInit(){
+		self.correct = false;
 		self.generateSecretNumber();
 		self.hundos = number!/100;
 		self.tens = (number!/10)%10;
@@ -48,13 +53,16 @@ public class Bagels {
 	public func playGame(){
 		// read user input
 		var input: Int;
-		var playAgain: Bool;
+		var again: Bool;
 		var validGeusses: Int;
-		validGeusses = 0;
-		playAgain = true;
-		input = -1;
 		
-		while playAgain{//was !playAgain
+		input = -1;
+		again = true;
+		validGeusses = 0;
+		
+		//main loop of program: inner loop: 1) recieve input, 2) check input, 3) print hint, 4) increase geuss count
+		//						outer loop: 1) run inner loop, 2) print completion message with number of geusses, 3) see if user wants to play again
+		while again{
 			while !correct{
 				input = recInput();
 				print("Input = \(input) \tnumber = \(number!)")
@@ -64,17 +72,26 @@ public class Bagels {
 			}
 			
 			print("You completed the game in \(validGeusses) valid geusses");
-			print("Would you like to play again? If so enter \"yes\"");
 			validGeusses = 0;
-			let inp = readLine();
-			if(inp == "yes"){
-				playAgain = true;
-			}
-			else{
-				playAgain = false;
-			}
+			again = playAgain();
 			correct = false;
 		}
+	}
+	
+	private func playAgain() -> Bool{
+		var again: Bool;
+		again = false;
+		
+		print("\nWould you like to play again? If so enter \"yes\"");
+		let inp = readLine();
+		if(inp == "yes"){
+			again = true;
+			reInit();
+		}
+		else{
+			again = false;
+		}
+		return again;
 	}
 	
 	private func generateSecretNumber(){
@@ -87,8 +104,6 @@ public class Bagels {
 			rhundos = self.number!/100;
 			rtens = (self.number!/10)%10;
 			rones = self.number!%10;
-			
-			print("number  = \(self.number!)\t \(rhundos)\t\(rtens)\t\(rones)");
 		}while( rhundos == rtens || rhundos == rones || rones == rtens);
 	}
 	
@@ -102,11 +117,12 @@ public class Bagels {
 		}
 	}
 	
+	//function checks to see if the user has the correct geuss, and if not return the corresponding hint
 	private func printHint(guess: String){
 		let g = Int(guess);
 		
 		if(g == self.number){
-			print("CORRECT! You geussed the correct number of: \(self.number!)");
+			print("Winner!\nYou geussed the correct number of: \(self.number!)");
 			return;
 		}
 		
@@ -119,12 +135,10 @@ public class Bagels {
 		var i: Int;
 		i = 0;
 		var str = "";
-		//print("hundos = \(hundos!)\ttens = \(tens!)\tones = \(ones!)");
-		//print("ghundos = \(ghundos)\tgtens = \(gtens)\tgones = \(gones)");
 		while i < arr.count{
 			j = i;
 			if(arr[i] == garr[i]){
-				str+="Fermi ";
+				str = "Fermi " + str;
 			}
 			else{
 				j = 0;
@@ -144,8 +158,8 @@ public class Bagels {
 		print("\(str)")
 	}
 	
-	//function receives the user input and checks to make sure it is an int between 0 - 999
-	func recInput() -> Int{
+	//function receives the user input and checks to make sure it is an int between 100 - 999
+	private func recInput() -> Int{
 		var i = 0;
 		var input: String?;
 		repeat{
@@ -158,10 +172,9 @@ public class Bagels {
 					i = Int(input)!;
 				}
 			}
-		}while(i > 999 || i <= 0);
+		}while(i > 999 || i < 100 );
 
 		return i;
 	}
-	
 }
 
